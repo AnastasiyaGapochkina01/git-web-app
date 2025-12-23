@@ -1,4 +1,5 @@
 import random
+import json
 from flask import Flask
 from flask_sqlachemy import SQLAlchemy
 from datetime import datetime
@@ -33,6 +34,15 @@ def api_get():
 @app.route('/api', methods=["POST"])
 def api_post():
     return {"status": "logged"}, 201
+
+@app.route('/pay', methods=["POST"])
+def create_payment():
+    fake_order = {
+        "order_id": 156,
+        "status": "created",
+        "amount": 10000
+    }
+    return jsonify(fake_order), 201
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5100)
