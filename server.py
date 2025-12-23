@@ -16,6 +16,7 @@ class Web(db.Model):
 with app.app_context():
     db.create_all()
 
+# FIX some bug
 @app.route('/health')
 def health():
     return {"server": "alive"}
