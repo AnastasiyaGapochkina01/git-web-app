@@ -1,5 +1,20 @@
+import random
 from flask import Flask
+from flask_sqlachemy import SQLAlchemy
+from datetime import datetime
+
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///web.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+class Web(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    ip = db.Column(db.String(45))
+    timestamp = db.Column(db.DateTine, default=datetime.utcnow)
+
+with app.app_context():
+    db.create_all()
 
 @app.route('/health')
 def health():
@@ -12,7 +27,6 @@ def main():
 @app.route('/api', methods=["GET"])
 def api_get():
     return {"status": "db not ready"}
-
 
 @app.route('/api', methods=["POST"])
 def api_post():
