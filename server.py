@@ -27,7 +27,8 @@ def main():
 
 @app.route('/api', methods=["GET"])
 def api_get():
-    return {"status": "db not ready"}
+    logs = Web.query.all()
+    return {"status": "db not ready", "logs": logs}
 
 @app.route('/api', methods=["POST"])
 def api_post():
