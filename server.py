@@ -5,5 +5,9 @@ app = Flask(__name__)
 def health():
     return {"server": "alive"}
 
+@app.route('/main')
+def main():
+    return {"msg": "hello"}
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5100)
