@@ -1,6 +1,7 @@
 from flask import Flask
 app = Flask(__name__)
 
+# FIX some bug
 @app.route('/health')
 def health():
     return {"server": "alive"}
